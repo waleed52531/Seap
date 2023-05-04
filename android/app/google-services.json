@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "45818287522",
+    "project_id": "saep-52976",
+    "storage_bucket": "saep-52976.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45818287522:android:71523b3305b5462a80cefb",
+        "android_client_info": {
+          "package_name": "com.iconic.saep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45818287522-ju1cv05fdk45316neu49es3l5ru0401u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNbMYD7B2B5bo1aGAK68DJmwBRWxOZyuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45818287522-ju1cv05fdk45316neu49es3l5ru0401u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
