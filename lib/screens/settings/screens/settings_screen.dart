@@ -14,6 +14,7 @@ import 'package:socialv/screens/settings/screens/coupon_list_screen.dart';
 import 'package:socialv/screens/settings/screens/edit_shop_details_screen.dart';
 import 'package:socialv/screens/settings/screens/language_screen.dart';
 import 'package:socialv/screens/settings/screens/notification_settings.dart';
+import 'package:socialv/screens/settings/screens/profile_information_screen.dart';
 import 'package:socialv/screens/settings/screens/profile_visibility_screen.dart';
 import 'package:socialv/utils/app_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -67,11 +68,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    SettingSection(
+                    //TODO: zaroorat nhi is liay comment kai ha
+                   /* SettingSection(
                       title: Text(language.appSetting.toUpperCase(), style: boldTextStyle(color: context.primaryColor)),
                       headingDecoration: BoxDecoration(color: context.cardColor),
                       items: [
-                        SettingItemWidget(
+                        //TODO: zaroorat nhi is liay comment kai ha
+                       *//* SettingItemWidget(
                           title: language.appTheme,
                           titleTextStyle: primaryTextStyle(color: appStore.isDarkMode ? bodyDark : bodyWhite),
                           leading: Image.asset(ic_dark_mode, height: 18, width: 18, color: context.primaryColor, fit: BoxFit.cover),
@@ -164,9 +167,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           onTap: () {
                             LanguageScreen().launch(context);
                           },
-                        ),
+                        ),*//*
                       ],
-                    ),
+                    ),*/
                     SettingSection(
                       title: Text('${language.account.toUpperCase()} ${language.settings.toUpperCase()}', style: boldTextStyle(color: context.primaryColor)),
                       headingDecoration: BoxDecoration(color: context.cardColor),
@@ -183,7 +186,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               });
                           },
                         ),
-                        if (appStore.showWoocommerce)
+                        SettingItemWidget(
+                          title: language.personalInfo,
+                          titleTextStyle: primaryTextStyle(color: appStore.isDarkMode ? bodyDark : bodyWhite),
+                          leading: Image.asset(ic_profile, height: 18, width: 18, color: context.primaryColor, fit: BoxFit.cover),
+                          trailing: Icon(Icons.arrow_forward_ios, color: appStore.isDarkMode ? bodyDark : bodyWhite, size: 16),
+                          onTap: () {
+                            if (!appStore.isLoading) ProfileDetailScreen().launch(context);
+                          },
+                        ),
+                        //TODO: zaroorat nhi is liay comment kai ha
+                        /*if (appStore.showWoocommerce)
                           SettingItemWidget(
                             title: language.editShopDetails,
                             titleTextStyle: primaryTextStyle(color: appStore.isDarkMode ? bodyDark : bodyWhite),
@@ -205,7 +218,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             onTap: () {
                               CouponListScreen().launch(context);
                             },
-                          ),
+                          ),*/
                         SettingItemWidget(
                           title: language.changePassword,
                           titleTextStyle: primaryTextStyle(color: appStore.isDarkMode ? bodyDark : bodyWhite),
@@ -224,7 +237,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             if (!appStore.isLoading) NotificationSettings().launch(context);
                           },
                         ),
-                        SettingItemWidget(
+                        //TODO: zaroorat nhi is liay comment kai ha
+                      /*  SettingItemWidget(
                           title: language.profileVisibility,
                           titleTextStyle: primaryTextStyle(color: appStore.isDarkMode ? bodyDark : bodyWhite),
                           leading: Image.asset(ic_profile, height: 18, width: 18, color: context.primaryColor, fit: BoxFit.cover),
@@ -232,14 +246,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           onTap: () {
                             if (!appStore.isLoading) ProfileVisibilityScreen().launch(context);
                           },
-                        ),
+                        ),*/
                       ],
                     ),
                     SettingSection(
                       title: Text(language.about.toUpperCase(), style: boldTextStyle(color: context.primaryColor)),
                       headingDecoration: BoxDecoration(color: context.cardColor),
                       items: [
-                        SnapHelperWidget<PackageInfoData>(
+                        //TODO: zaroorat nhi is liay comment kai ha
+                        /*SnapHelperWidget<PackageInfoData>(
                           future: getPackageInfo(),
                           onSuccess: (d) => SettingItemWidget(
                             title: language.rateUs,
@@ -264,7 +279,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           onTap: () {
                             if (!appStore.isLoading) onShareTap(context);
                           },
-                        ),
+                        ),*/
                         SettingItemWidget(
                           title: language.privacyPolicy,
                           titleTextStyle: primaryTextStyle(color: appStore.isDarkMode ? bodyDark : bodyWhite),
@@ -294,7 +309,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ],
                     ),
-                    SettingSection(
+                    //TODO: zaroorat nhi is liay comment kai ha
+                 /*   SettingSection(
                       title: Text(language.manageAccount.toUpperCase(), style: boldTextStyle(color: context.primaryColor)),
                       headingDecoration: BoxDecoration(color: context.cardColor),
                       items: [
@@ -356,7 +372,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           },
                         ),
                       ],
-                    ),
+                    ),*/
                     TextButton(
                       onPressed: () {
                         showConfirmDialogCustom(

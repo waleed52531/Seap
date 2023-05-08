@@ -28,17 +28,21 @@ class DrawerModel {
 List<DrawerModel> getDrawerOptions() {
   List<DrawerModel> list = [];
 
-  list.add(DrawerModel(image: ic_story, title: language.myStories, attachedScreen: UserStoryScreen()));
+  //TODO: zaroorat nhi is liay comment kai ha
+  // list.add(DrawerModel(image: ic_story, title: language.myStories, attachedScreen: UserStoryScreen()));
   list.add(DrawerModel(image: ic_two_user, title: language.friends, attachedScreen: ProfileFriendsScreen()));
   list.add(DrawerModel(image: ic_three_user, title: language.groups, attachedScreen: GroupScreen()));
-  list.add(DrawerModel(image: ic_document, title: language.forums, attachedScreen: MyForumsScreen()));
+  //TODO: zaroorat nhi is liay comment kai ha
+  // list.add(DrawerModel(image: ic_document, title: language.forums, attachedScreen: MyForumsScreen()));
   /// todo: add language key
-  list.add(DrawerModel(image: ic_book, title: language.courses, attachedScreen: CourseListScreen(), isNew: true));
+  /// //TODO: zaroorat nhi is liay comment kai ha
+  // list.add(DrawerModel(image: ic_book, title: language.courses, attachedScreen: CourseListScreen(), isNew: true));
   if (appStore.showWoocommerce) {
-    list.add(DrawerModel(image: ic_store, title: language.shop, attachedScreen: ShopScreen()));
-    list.add(DrawerModel(image: ic_buy, title: language.cart, attachedScreen: CartScreen(isFromHome: true)));
-    list.add(DrawerModel(image: ic_heart, title: language.wishlist, attachedScreen: WishlistScreen()));
-    list.add(DrawerModel(image: ic_bag, title: language.myOrders, attachedScreen: OrdersScreen()));
+    //TODO: zaroorat nhi is liay comment kai ha
+    // list.add(DrawerModel(image: ic_store, title: language.shop, attachedScreen: ShopScreen()));
+    // list.add(DrawerModel(image: ic_buy, title: language.cart, attachedScreen: CartScreen(isFromHome: true)));
+    // list.add(DrawerModel(image: ic_heart, title: language.wishlist, attachedScreen: WishlistScreen()));
+    // list.add(DrawerModel(image: ic_bag, title: language.myOrders, attachedScreen: OrdersScreen()));
   }
 
   list.add(DrawerModel(image: ic_setting, title: language.settings, attachedScreen: SettingsScreen()));
@@ -104,11 +108,11 @@ class PostMedia {
 List<LanguageDataModel> languageList() {
   return [
     LanguageDataModel(id: 1, name: 'English', subTitle: 'English', languageCode: 'en', fullLanguageCode: 'en_en-US', flag: 'assets/flag/ic_us.png'),
-    LanguageDataModel(id: 2, name: 'Hindi', subTitle: 'हिंदी', languageCode: 'hi', fullLanguageCode: 'hi_hi-IN', flag: 'assets/flag/ic_hi.png'),
-    LanguageDataModel(id: 3, name: 'Arabic', subTitle: 'عربي', languageCode: 'ar', fullLanguageCode: 'ar_ar-AR', flag: 'assets/flag/ic_ar.png'),
-    LanguageDataModel(id: 4, name: 'French', subTitle: 'français', languageCode: 'fr', fullLanguageCode: 'fr_fr-FR', flag: 'assets/flag/ic_fr.png'),
-    LanguageDataModel(id: 5, name: 'Spanish', subTitle: 'español', languageCode: 'es', fullLanguageCode: 'es_es-ES', flag: 'assets/flag/ic_es.png'),
-    LanguageDataModel(id: 6, name: 'German', subTitle: 'Deutsch', languageCode: 'de', fullLanguageCode: 'de_de-De', flag: 'assets/flag/ic_de.png'),
-    LanguageDataModel(id: 6, name: 'Portuguese', subTitle: 'Português', languageCode: 'pt', fullLanguageCode: 'pt_pt-PT', flag: 'assets/flag/ic_pt.jpg'),
+    // LanguageDataModel(id: 2, name: 'Hindi', subTitle: 'हिंदी', languageCode: 'hi', fullLanguageCode: 'hi_hi-IN', flag: 'assets/flag/ic_hi.png'),
+    // LanguageDataModel(id: 3, name: 'Arabic', subTitle: 'عربي', languageCode: 'ar', fullLanguageCode: 'ar_ar-AR', flag: 'assets/flag/ic_ar.png'),
+    // LanguageDataModel(id: 4, name: 'French', subTitle: 'français', languageCode: 'fr', fullLanguageCode: 'fr_fr-FR', flag: 'assets/flag/ic_fr.png'),
+    // LanguageDataModel(id: 5, name: 'Spanish', subTitle: 'español', languageCode: 'es', fullLanguageCode: 'es_es-ES', flag: 'assets/flag/ic_es.png'),
+    // LanguageDataModel(id: 6, name: 'German', subTitle: 'Deutsch', languageCode: 'de', fullLanguageCode: 'de_de-De', flag: 'assets/flag/ic_de.png'),
+    // LanguageDataModel(id: 6, name: 'Portuguese', subTitle: 'Português', languageCode: 'pt', fullLanguageCode: 'pt_pt-PT', flag: 'assets/flag/ic_pt.jpg'),
   ];
 }

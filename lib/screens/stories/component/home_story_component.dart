@@ -77,7 +77,8 @@ class _HomeStoryComponentState extends State<HomeStoryComponent> with TickerProv
       builder: (_) => Stack(
         alignment: Alignment.center,
         children: [
-          Align(
+          //TODO: ya comment story ka btn hatany k liay lagaya ha
+         /* Align(
             alignment: Alignment.topLeft,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -253,7 +254,7 @@ class _HomeStoryComponentState extends State<HomeStoryComponent> with TickerProv
                 ],
               ),
             ),
-          ),
+          ),*/
           ThreeBounceLoadingWidget().visible(appStore.showStoryLoader)
         ],
       ),

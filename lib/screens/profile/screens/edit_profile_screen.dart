@@ -9,6 +9,7 @@ import 'package:socialv/main.dart';
 import 'package:socialv/models/members/profile_field_model.dart';
 import 'package:socialv/network/rest_apis.dart';
 import 'package:socialv/screens/profile/components/expansion_body.dart';
+import 'package:socialv/screens/profile/screens/personal_detail_form.dart';
 import 'package:socialv/utils/app_constants.dart';
 import 'package:socialv/utils/cached_network_image.dart';
 
@@ -359,6 +360,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               LoadingWidget().visible(appStore.isLoading).center(),
             ],
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => InfoForm(),));
+            },
+            child: Text('Edit'),
+          ),
+
         ),
       ),
     );

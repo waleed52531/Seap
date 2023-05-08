@@ -270,10 +270,11 @@ class _DashboardScreenState extends State<DashboardScreen> with TickerProviderSt
                       splashColor: Colors.transparent,
                       icon: Image.asset(ic_plus, height: 22, width: 22, fit: BoxFit.fitWidth, color: context.iconColor),
                     ),
-                    if (appStore.showWoocommerce)
+                    //TODO : ya comment ma cart ka option hide kia ha
+                    /*if (appStore.showWoocommerce)
                       Image.asset(ic_bag, height: 24, width: 24, fit: BoxFit.fitWidth, color: context.iconColor).onTap(() {
                         ShopScreen().launch(context);
-                      }, splashColor: Colors.transparent, highlightColor: Colors.transparent).paddingSymmetric(horizontal: 8),
+                      }, splashColor: Colors.transparent, highlightColor: Colors.transparent).paddingSymmetric(horizontal: 8),*/
                     Observer(
                       builder: (_) => IconButton(
                         highlightColor: Colors.transparent,
