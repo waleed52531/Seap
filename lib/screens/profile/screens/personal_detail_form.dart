@@ -162,7 +162,7 @@ class _InfoFormState extends State<InfoForm> {
             CustomDropDown(dropDownItems: widget.dropDownItemsCity,
                 prefixIcon: Icon(Icons.location_on_outlined),
                 labelText: "select leave type",
-                showSearch: true, title: "select leave type"),
+                showSearch: true, title: "Location"),
              //Biography
             CustomTextFormField(
               enable: true,
