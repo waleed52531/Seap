@@ -4,6 +4,8 @@ import 'package:socialv/main.dart';
 import 'package:socialv/models/woo_commerce/country_model.dart';
 import 'package:socialv/screens/profile/components/custom_text.dart';
 
+import '../../../utils/constants.dart';
+
 class ProfileDetailScreen extends StatefulWidget {
   const ProfileDetailScreen({Key? key}) : super(key: key);
 
@@ -15,6 +17,14 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
   String? name;
   String? date;
   String? biography;
+  String? phone;
+  String? email;
+  String? address;
+  String? emergency_contact;
+  String? cnic;
+  String? academic_qualification;
+  String? blood_group;
+  String? nik;
 
   late SharedPreferences prefs;
 
@@ -30,6 +40,15 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
       name = prefs.getString("nameController")!;
       date = prefs.getString("dateController")!;
       biography = prefs.getString("biographyController")!;
+      phone = prefs.getString("phoneController")!;
+      email = prefs.getString("emailController")!;
+      address = prefs.getString("addressController")!;
+      emergency_contact = prefs.getString("emergencyContactController")!;
+      cnic = prefs.getString("cnicController")!;
+      academic_qualification = prefs.getString("qualificationController")!;
+      blood_group = prefs.getString("bloodGroupController")!;
+      nik = prefs.getString("nikController")!;
+
     });
   }
   @override
@@ -55,7 +74,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CustomText(label: "Basic Information"),
+                  CustomText(label: "Basic Information",fontweight: FontWeight.bold),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0,bottom: 20),
                     child: Container(
@@ -67,6 +86,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(label: 'Name'),
+                              SizedBox(width: 100),
                               CustomText(label: name ?? ''),
                             ],
                           ),
@@ -86,6 +106,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(label: 'Birthday'),
+                              SizedBox(width: 100),
                               CustomText(label: date ?? ""),
                             ],
                           ),
@@ -105,7 +126,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(label: 'Biography'),
-                              CustomText(label: biography ?? ""),
+                              SizedBox(width: 100),
+                              Expanded(
+                                child: CustomText(label: biography ?? "",
+                                    overflow: TextOverflow.ellipsis,),
+                              ),
                             ],
                           ),
 
@@ -114,7 +139,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                       ),
                     ),
                   ),
-                  /*CustomText(label: "Hobbies And Interest"),
+                  CustomText(label: "Personal Data",fontweight: FontWeight.bold),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0,bottom: 20),
                     child: Container(
@@ -125,8 +150,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(label: 'My Hobbies'),
-                              CustomText(label: 'name'),
+                              CustomText(label: 'Phone'),
+                              SizedBox(width: 100),
+                              CustomText(label: phone ?? ""),
                             ],
                           ),
                           SizedBox(height: 10),
@@ -134,8 +160,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(label: 'Music Brands'),
-                              CustomText(label: 'name'),
+                              CustomText(label: 'Email'),
+                              SizedBox(width: 100),
+                              CustomText(label: email ?? ''),
                             ],
                           ),
                           SizedBox(height: 10),
@@ -143,8 +170,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(label: 'Tv Shows'),
-                              CustomText(label: 'name'),
+                              CustomText(label: 'address'),
+                              SizedBox(width: 100),
+                              Expanded(child: CustomText(label: address ?? '',)),
                             ],
                           ),
                           SizedBox(height: 10),
@@ -152,8 +180,8 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(label: 'Movies'),
-                              CustomText(label: 'name'),
+                              CustomText(label: 'Emergency Contact'),
+                              CustomText(label: emergency_contact ?? ''),
                             ],
                           ),
                           SizedBox(height: 10),
@@ -161,8 +189,26 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(label: 'Games'),
-                              CustomText(label: 'name'),
+                              CustomText(label: 'Academic Qualification'),
+                              CustomText(label: academic_qualification ?? ''),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(label: 'Blood Group'),
+                              CustomText(label: blood_group ?? ''),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(label: 'Next of Kin'),
+                              CustomText(label: nik ?? ''),
                             ],
                           ),
                           SizedBox(height: 10),
@@ -170,7 +216,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                       ),
                     ),
                   ),
-                  CustomText(label: "SocialNetworks"),
+                  /*CustomText(label: "SocialNetworks"),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0,bottom: 20),
                     child: Container(
@@ -207,8 +253,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         ],
                       ),
                     ),
-                  ),
-*/
+                  ),*/
                 ],
               ),
             ),

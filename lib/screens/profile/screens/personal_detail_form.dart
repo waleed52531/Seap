@@ -46,6 +46,8 @@ class InfoForm extends StatefulWidget {
 }
 
 class _InfoFormState extends State<InfoForm> {
+  String fullName = '';
+  String emailAddress = '';
 
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -77,6 +79,13 @@ class _InfoFormState extends State<InfoForm> {
   TextEditingController divController = TextEditingController();
   TextEditingController secController = TextEditingController();
 
+  /*@override
+  void initState() {
+    super.initState();
+    nameController.text = appStore.loginFullName;
+    emailController.text = appStore.loginEmail;
+  }
+*/
 
 
   DateTime selectedDate = DateTime.now();
@@ -121,10 +130,10 @@ class _InfoFormState extends State<InfoForm> {
             ),
             //name
             CustomTextFormField(
-              enable: true,
+              enable: false,
               controller: nameController,
               textInputAction: TextInputAction.next,
-              placeholder: "Name",
+              placeholder: appStore.loginFullName,
               prefixIcon: const Icon(
                 Icons.person,
                 color: appColorPrimary,
@@ -133,7 +142,9 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.name,
-              onChanged: () {},
+              onChanged: (text) {
+                fullName = text;
+              },
             ),
             SizedBox(height: 10),
             //Gender
@@ -146,7 +157,7 @@ class _InfoFormState extends State<InfoForm> {
               enable: true,
               controller: dateController,
               textInputAction: TextInputAction.next,
-              placeholder: "Date*",
+              placeholder: "Date",
               prefixIcon: const Icon(
                 Icons.date_range,
                 color: appColorPrimary,
@@ -161,7 +172,7 @@ class _InfoFormState extends State<InfoForm> {
             //location
             CustomDropDown(dropDownItems: widget.dropDownItemsCity,
                 prefixIcon: Icon(Icons.location_on_outlined),
-                labelText: "select leave type",
+                labelText: "Location",
                 showSearch: true, title: "Location"),
              //Biography
             CustomTextFormField(
@@ -211,7 +222,7 @@ class _InfoFormState extends State<InfoForm> {
               enable: false,
               controller: emailController,
               textInputAction: TextInputAction.next,
-              placeholder: "Email",
+              placeholder: appStore.loginEmail,
               prefixIcon: const Icon(
                 Icons.email,
                 color: appColorPrimary,
@@ -220,7 +231,9 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.emailAddress,
-              onChanged: () {},
+              onChanged: (text) {
+                emailAddress = text;
+              },
             ),
 
             //martialstatus
