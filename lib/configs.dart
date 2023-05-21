@@ -27,6 +27,10 @@ const PRIVACY_POLICY_URL = '$DOMAIN_URL/privacy-policy-2/';
 /// Support URL
 const SUPPORT_URL = 'https://iqonic.desky.support';
 
+///Sample Links
+const GOOGLE_URL = 'https://www.google.com/';
+const YOUTUBE_URL = 'https://www.youtube.com/';
+
 /// AdMod Id
 // Android
 const mAdMobAppId = '';

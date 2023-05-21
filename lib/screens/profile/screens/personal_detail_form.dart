@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:socialv/components/loading_widget.dart';
 import 'package:socialv/main.dart';
 import 'package:socialv/screens/profile/components/custom_dropdown.dart';
 import 'package:socialv/screens/profile/components/custom_text.dart';
 import 'package:socialv/screens/profile/components/custom_textfield.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:socialv/screens/profile/model/profile_info_model.dart';
+import 'package:socialv/screens/settings/screens/profile_information_screen.dart';
 import 'package:socialv/utils/colors.dart';
 import 'package:socialv/utils/common.dart';
+
+import '../../../models/common_models/user.dart';
 
 class InfoForm extends StatefulWidget {
   InfoForm({Key? key}) : super(key: key);
   var dropDownItemsMStatus = ["Single","Married"];
   var dropDownItemsGender = ["Male","Female"];
+  var dropDownItemsBlood = ['A+','A-','B+','B-','AB+','AB-','O+','O-'];
   var dropDownItemsCity = [ "Islamabad", "Ahmed Nager", "Ahmadpur East", "Ali Khan", "Alipur", "Arifwala",
     "Attock", "Bhera", "Bhalwal", "Bahawalnagar", "Bahawalpur", "Bhakkar", "Burewala", "Chillianwala",
     "Chakwal", "Chichawatni", "Chiniot", "Chishtian", "Daska", "Darya Khan", "Dera Ghazi", "Dhaular",
@@ -46,13 +53,18 @@ class InfoForm extends StatefulWidget {
 }
 
 class _InfoFormState extends State<InfoForm> {
+  String? selectedGender;
+  String? selectedlocation;
+  String? selectedstatus;
+  String? selectedgroup;
+
+
   String fullName = '';
   String emailAddress = '';
 
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController biographyController = TextEditingController();
-  TextEditingController locationController = TextEditingController();
 
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -60,7 +72,6 @@ class _InfoFormState extends State<InfoForm> {
   TextEditingController emergencyContactController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
   TextEditingController qualificationController = TextEditingController();
-  TextEditingController bloodGroupController = TextEditingController();
   TextEditingController nikController = TextEditingController();
 
   //professional info
@@ -149,9 +160,15 @@ class _InfoFormState extends State<InfoForm> {
             SizedBox(height: 10),
             //Gender
             CustomDropDown(dropDownItems: widget.dropDownItemsGender,
-                prefixIcon: Icon(Icons.perm_identity),
-                labelText: "Gender",
-                showSearch: true, title: "Gender"),
+              prefixIcon: Icon(Icons.perm_identity),
+              labelText: "Gender",
+              showSearch: true,
+              title: "Gender",
+              onChanged: (value){
+                setState(() {
+                  selectedGender = value;
+                });
+              },),
             //DD/MM/YYYY
             CustomTextFormField(
               enable: true,
@@ -166,15 +183,22 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.datetime,
-              onChanged: () {},
+              onTap: (){
+                _selectDate(context);
+              }, onChanged: (){},
             ),
             SizedBox(height: 10),
             //location
             CustomDropDown(dropDownItems: widget.dropDownItemsCity,
-                prefixIcon: Icon(Icons.location_on_outlined),
-                labelText: "Location",
-                showSearch: true, title: "Location"),
-             //Biography
+              prefixIcon: Icon(Icons.location_on_outlined),
+              labelText: "Location",
+              showSearch: true, title: "Location",
+              onChanged: (value){
+                setState(() {
+                  selectedlocation = value;
+                });
+              },),
+            //Biography
             CustomTextFormField(
               enable: true,
               controller: biographyController,
@@ -240,7 +264,13 @@ class _InfoFormState extends State<InfoForm> {
             CustomDropDown(dropDownItems: widget.dropDownItemsMStatus,
                 prefixIcon: Icon(Icons.person_2_outlined),
                 labelText: "MartialStatus",
-                showSearch: true, title: "Martial Status"),
+                showSearch: true,
+                onChanged: (value){
+                  setState(() {
+                    selectedstatus = value;
+                  });
+                },
+                title: "Martial Status"),
             //address
             CustomTextFormField(
               enable: true,
@@ -306,21 +336,17 @@ class _InfoFormState extends State<InfoForm> {
               onChanged: () {},
             ),
             //Blood group
-            CustomTextFormField(
-              enable: true,
-              controller: bloodGroupController,
-              textInputAction: TextInputAction.next,
-              placeholder: "Blood Group ",
-              prefixIcon: const Icon(
-                Icons.bloodtype,
-                color: appColorPrimary,
-              ),
-              obscureText: false,
-              errorEnable: false,
-              errorText: "",
-              keyboardType: TextInputType.text,
-              onChanged: () {},
-            ),
+            SizedBox(height: 10),
+            CustomDropDown(dropDownItems: widget.dropDownItemsBlood,
+              prefixIcon: Icon(Icons.perm_identity),
+              labelText: "BloodGroup",
+              showSearch: true,
+              title: "BloodGroup",
+              onChanged: (value){
+                setState(() {
+                  selectedgroup = value;
+                });
+              },),
             //Next Of Kin
             CustomTextFormField(
               enable: true,
@@ -525,7 +551,7 @@ class _InfoFormState extends State<InfoForm> {
               onChanged: () {},
             ),
             //department
-             CustomTextFormField(
+            CustomTextFormField(
               enable: true,
               controller: departmentController,
               textInputAction: TextInputAction.next,
@@ -573,52 +599,142 @@ class _InfoFormState extends State<InfoForm> {
               onChanged: () {},
             ),
 
+            SizedBox(height: 10),
+
+            appButton(
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('nameController', nameController.text);
+                await prefs.setString('dateController', dateController.text);
+                await prefs.setString('gender', selectedGender ?? '');
+                await prefs.setString('biographyController', biographyController.text);
+                await prefs.setString('location', selectedlocation ?? '');
+
+                await prefs.setString('phoneController', phoneController.text);
+                await prefs.setString('emailController', emailController.text);
+                await prefs.setString(
+                    'addressController', addressController.text);
+                await prefs.setString('emergencyContactController',
+                    emergencyContactController.text);
+                await prefs.setString('cnicController', cnicController.text);
+                await prefs.setString('martial_status', selectedstatus ?? '');
+                await prefs.setString(
+                    'qualificationController', qualificationController.text);
+                await prefs.setString(
+                    'bloodGroup', selectedgroup ?? '');
+                await prefs.setString('nikController', nikController.text);
+
+                await prefs.setString(
+                    'staffNoController', staffNoController.text);
+                await prefs.setString(
+                    'gradingController', gradingController.text);
+                await prefs.setString(
+                    'licenseController', licenseController.text);
+                await prefs.setString('apesController', apesController.text);
+                await prefs.setString(
+                    'designationController', designationController.text);
+                await prefs.setString('dojController', dojController.text);
+                await prefs.setString('dorController', dorController.text);
+                await prefs.setString('douController', douController.text);
+                await prefs.setString('sopController', sopController.text);
+                await prefs.setString('pqController', pqController.text);
+                await prefs.setString(
+                    'companyController', companyController.text);
+                await prefs.setString(
+                    'departmentController', departmentController.text);
+                await prefs.setString('divController', divController.text);
+                await prefs.setString('secController', secController.text);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Data saved in shared preferences!'),
+                  ),
+
+                );
+                final user = UserInfo(
+                  name: appStore.loginFullName,
+                  date: dateController.text,
+                  gender: selectedGender ?? '',
+                  biography: biographyController.text,
+                  location: selectedlocation ?? '',
+
+                  phone: phoneController.text,
+                  email: appStore.loginEmail,
+                  martialstatus: selectedstatus ?? '',
+                  address: addressController.text,
+                  emergency_contact: emergencyContactController.text,
+                  cnic: cnicController.text,
+                  academic_qualification: qualificationController.text,
+                  blood_group: selectedgroup?? '',
+                  nik: nikController.text,
+                  staffno: staffNoController.text,
+                  grading: gradingController.text,
+                  license: licenseController.text,
+                  apes: apesController.text,
+                  designation: designationController.text,
+                  joining_date: dojController.text,
+                  retierment_date: dorController.text,
+                  utilization_date: douController.text,
+                  posting_station: sopController.text,
+                  qualification: pqController.text,
+                  company: companyController.text,
+                  department: departmentController.text,
+                  division: divController.text,
+                  section: secController.text,
+
+                );
+
+                createUser(user);
+
+
+              },
+              context: context,
+              text: language.saveChanges.capitalizeFirstLetter(),
+            ).paddingLeft(20),
+
+            SizedBox(height: 10),
           ],
         ),
 
       ),
 
-      bottomSheet: appButton(
-        context: context,
-        text: language.saveChanges.capitalizeFirstLetter(),
-        onTap: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('nameController', nameController.text);
-          await prefs.setString('dateController', dateController.text);
-          await prefs.setString('biographyController', biographyController.text);
-          await prefs.setString('locationController', locationController.text);
 
-          await prefs.setString('phoneController', phoneController.text);
-          await prefs.setString('emailController', emailController.text);
-          await prefs.setString('addressController', addressController.text);
-          await prefs.setString('emergencyContactController', emergencyContactController.text);
-          await prefs.setString('cnicController', cnicController.text);
-          await prefs.setString('qualificationController', qualificationController.text);
-          await prefs.setString('bloodGroupController', bloodGroupController.text);
-          await prefs.setString('nikController', nikController.text);
-
-          await prefs.setString('staffNoController', staffNoController.text);
-          await prefs.setString('gradingController', gradingController.text);
-          await prefs.setString('licenseController', licenseController.text);
-          await prefs.setString('apesController', apesController.text);
-          await prefs.setString('designationController', designationController.text);
-          await prefs.setString('dojController', dojController.text);
-          await prefs.setString('dorController', dorController.text);
-          await prefs.setString('douController', douController.text);
-          await prefs.setString('sopController', sopController.text);
-          await prefs.setString('pqController', pqController.text);
-          await prefs.setString('companyController', companyController.text);
-          await prefs.setString('departmentController', departmentController.text);
-          await prefs.setString('divController', divController.text);
-          await prefs.setString('secController', secController.text);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Data saved in shared preferences!'),
-            ),
-          );
-
-        },
-      ).paddingLeft(20),
     );
   }
+
+  // final _db = FirebaseFirestore.instance;
+
+  Future<void> createUser(UserInfo user) async{
+   /* await _db.collection("User").doc("${appStore.loginEmail}").set(user.toJson()).whenComplete(
+          () => ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Data saved!'),
+              backgroundColor: appColorPrimary ,
+            ),
+          ),
+        ).catchError((onError){
+      SnackBar(
+        content: Text('Error $onError)'),
+        backgroundColor: appColorPrimary ,
+      );
+    });*/
+    final docUser = FirebaseFirestore.instance.collection('users').doc("${appStore.loginEmail}");
+
+     user.id = docUser.id;
+
+    final json = user.toJson();
+    await docUser.set(json).whenComplete(
+          () => ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Data saved!'),
+              backgroundColor: appColorPrimary,
+            ),
+          ),
+        ).catchError((onError){
+      SnackBar(
+        content: Text('Error $onError)'),
+        backgroundColor: appColorPrimary ,
+      );
+    });
+  }
 }
+

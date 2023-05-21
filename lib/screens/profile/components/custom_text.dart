@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
+import 'package:socialv/utils/app_constants.dart';
 
 class CustomText extends StatelessWidget {
-   CustomText({
+  CustomText({
     Key? key,
     required this.label,
     this.fontweight,
-     this.softwrap,
-     this.maxLines,
-     this.overflow,
+    this.softwrap,
+    this.maxLines,
+    this.overflow,
 
   }) : super(key: key);
 
@@ -29,10 +31,9 @@ class CustomText extends StatelessWidget {
         softWrap: softwrap,
         maxLines: maxLines,
         overflow: overflow,
-        style: TextStyle(fontSize: 18,
-            fontWeight: fontweight,
-        ),
+        style: boldTextStyle(color: appColorPrimary),
       ),
     );
   }
 }
+

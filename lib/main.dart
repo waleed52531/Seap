@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
 
   void init() async {
     afterBuildCreated(() async {
-      int themeModeIndex = getIntAsync(SharePreferencesKey.APP_THEME, defaultValue: AppThemeMode.ThemeModeSystem);
+      int themeModeIndex = getIntAsync(SharePreferencesKey.APP_THEME, defaultValue: AppThemeMode.ThemeModeLight);
 
       if (themeModeIndex == AppThemeMode.ThemeModeLight) {
         appStore.toggleDarkMode(value: false, isFromMain: true);
@@ -96,8 +96,8 @@ class _MyAppState extends State<MyApp> {
         title: APP_NAME,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: appStore.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        // darkTheme: AppTheme.darkTheme,
+        // themeMode: appStore.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         home: SplashScreen(),
         supportedLocales: LanguageDataModel.languageLocales(),
         localizationsDelegates: [

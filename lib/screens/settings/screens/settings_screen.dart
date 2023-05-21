@@ -14,6 +14,7 @@ import 'package:socialv/screens/settings/screens/coupon_list_screen.dart';
 import 'package:socialv/screens/settings/screens/edit_shop_details_screen.dart';
 import 'package:socialv/screens/settings/screens/language_screen.dart';
 import 'package:socialv/screens/settings/screens/notification_settings.dart';
+import 'package:socialv/screens/settings/screens/personal_info_detail.dart';
 import 'package:socialv/screens/settings/screens/profile_information_screen.dart';
 import 'package:socialv/screens/settings/screens/profile_visibility_screen.dart';
 import 'package:socialv/utils/app_constants.dart';
@@ -34,7 +35,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   init() async {
-    int themeModeIndex = getIntAsync(SharePreferencesKey.APP_THEME, defaultValue: AppThemeMode.ThemeModeSystem);
+    int themeModeIndex = getIntAsync(SharePreferencesKey.APP_THEME, defaultValue: AppThemeMode.ThemeModeLight);
 
     window.onPlatformBrightnessChanged = () {
       if (themeModeIndex == AppThemeMode.ThemeModeSystem) {

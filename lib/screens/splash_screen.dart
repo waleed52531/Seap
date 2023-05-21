@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
     afterBuildCreated(() {
       appStore.setLanguage(getStringAsync(SharePreferencesKey.LANGUAGE, defaultValue: Constants.defaultLanguage));
 
-      int themeModeIndex = getIntAsync(SharePreferencesKey.APP_THEME, defaultValue: AppThemeMode.ThemeModeSystem);
+      int themeModeIndex = getIntAsync(SharePreferencesKey.APP_THEME, defaultValue: AppThemeMode.ThemeModeLight);
       if (themeModeIndex == AppThemeMode.ThemeModeSystem) {
         appStore.toggleDarkMode(value: MediaQuery.of(context).platformBrightness != Brightness.light, isFromMain: true);
       }

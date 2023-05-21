@@ -25,6 +25,7 @@ const ic_notification = 'assets/icons/ic_notification.png';
 const ic_notification_selected = 'assets/icons/ic_notification_selected.png';
 const ic_paper = 'assets/icons/ic_paper.png';
 const ic_plus = 'assets/icons/ic_plus.png';
+const ic_links = 'assets/icons/ic_links.png';
 const ic_plus_selected = 'assets/icons/ic_plus_selected.png';
 const ic_profile = 'assets/icons/ic_profile.png';
 const ic_question_circle = 'assets/icons/ic_question_circle.png';

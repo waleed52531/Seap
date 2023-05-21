@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:socialv/utils/colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
         this.validate,
         this.onSubmitted,
         this.textColor,
+        this.onTap,
         this.enable});
 
   var onChanged;
@@ -36,12 +38,14 @@ class CustomTextFormField extends StatelessWidget {
   var onSubmitted;
   var textColor;
   var enable;
+  var onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
       child: TextFormField(
+        onTap: onTap,
         enabled: enable ?? true,
         onFieldSubmitted: onSubmitted,
         controller: controller,
@@ -80,3 +84,4 @@ class CustomTextFormField extends StatelessWidget {
     );
   }
 }
+
