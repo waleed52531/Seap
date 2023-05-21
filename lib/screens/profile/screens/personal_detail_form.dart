@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:socialv/components/loading_widget.dart';
 import 'package:socialv/main.dart';
@@ -99,20 +100,8 @@ class _InfoFormState extends State<InfoForm> {
 */
 
 
-  DateTime selectedDate = DateTime.now();
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -183,9 +172,39 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.datetime,
-              onTap: (){
-                _selectDate(context);
-              }, onChanged: (){},
+              onTap: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData.light().copyWith(
+                        primaryColor: Colors.green, // Change the primary color to your desired color
+                        accentColor: Colors.green, // Change the accent color to your desired color
+                        colorScheme: ColorScheme.light(primary: Colors.green), // Change the color scheme to your desired color
+                        buttonTheme: ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary,
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
+                );
+
+                if (picked != null) {
+                  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                  final String formattedDate = formatter.format(picked);
+                  setState(() {
+                    dateController.text = formattedDate;
+                  });
+                }
+              }, onChanged: (value){
+              setState(() {
+                dateController.text = value;
+              });
+            },
             ),
             SizedBox(height: 10),
             //location
@@ -231,6 +250,7 @@ class _InfoFormState extends State<InfoForm> {
               controller: phoneController,
               textInputAction: TextInputAction.next,
               placeholder: "Phone",
+              maxlength: 11,
               prefixIcon: const Icon(
                 Icons.phone,
                 color: appColorPrimary,
@@ -298,6 +318,7 @@ class _InfoFormState extends State<InfoForm> {
                 color: appColorPrimary,
               ),
               obscureText: false,
+              maxlength: 11,
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.number,
@@ -309,6 +330,7 @@ class _InfoFormState extends State<InfoForm> {
               controller: cnicController,
               textInputAction: TextInputAction.next,
               placeholder: "CNIC",
+              maxlength: 13,
               prefixIcon: const Icon(
                 Icons.perm_contact_calendar_outlined,
                 color: appColorPrimary,
@@ -436,7 +458,39 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.text,
-              onChanged: () {},
+              onTap: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData.light().copyWith(
+                        primaryColor: Colors.green, // Change the primary color to your desired color
+                        accentColor: Colors.green, // Change the accent color to your desired color
+                        colorScheme: ColorScheme.light(primary: Colors.green), // Change the color scheme to your desired color
+                        buttonTheme: ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary,
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
+                );
+
+                if (picked != null) {
+                  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                  final String formattedDate = formatter.format(picked);
+                  setState(() {
+                    apesController.text =formattedDate;
+                  });
+                }
+              }, onChanged: (value){
+              setState(() {
+                apesController.text = value;
+              });
+            },
             ),
             //Designation
             CustomTextFormField(
@@ -468,7 +522,39 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.datetime,
-              onChanged: () {},
+              onTap: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData.light().copyWith(
+                        primaryColor: Colors.green, // Change the primary color to your desired color
+                        accentColor: Colors.green, // Change the accent color to your desired color
+                        colorScheme: ColorScheme.light(primary: Colors.green), // Change the color scheme to your desired color
+                        buttonTheme: ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary,
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
+                );
+
+                if (picked != null) {
+                  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                  final String formattedDate = formatter.format(picked);
+                  setState(() {
+                    dojController.text =formattedDate;
+                  });
+                }
+              }, onChanged: (value){
+              setState(() {
+                dojController.text = value;
+              });
+            },
             ),
             //Date of Retirement
             CustomTextFormField(
@@ -484,7 +570,39 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.datetime,
-              onChanged: () {},
+              onTap: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData.light().copyWith(
+                        primaryColor: Colors.green, // Change the primary color to your desired color
+                        accentColor: Colors.green, // Change the accent color to your desired color
+                        colorScheme: ColorScheme.light(primary: Colors.green), // Change the color scheme to your desired color
+                        buttonTheme: ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary,
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
+                );
+
+                if (picked != null) {
+                  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                  final String formattedDate = formatter.format(picked);
+                  setState(() {
+                    dorController.text =formattedDate;
+                  });
+                }
+              }, onChanged: (value){
+              setState(() {
+                dorController.text = value;
+              });
+            },
             ),
             //Date of Utilization
             CustomTextFormField(
@@ -500,7 +618,38 @@ class _InfoFormState extends State<InfoForm> {
               errorEnable: false,
               errorText: "",
               keyboardType: TextInputType.datetime,
-              onChanged: () {},
+              onTap: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData.light().copyWith(
+                        primaryColor: Colors.green, // Change the primary color to your desired color
+                        accentColor: Colors.green, // Change the accent color to your desired color
+                        colorScheme: ColorScheme.light(primary: Colors.green), // Change the color scheme to your desired color
+                        buttonTheme: ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary,
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
+                );
+
+                if (picked != null) {
+                  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                  final String formattedDate = formatter.format(picked);
+                  setState(() {
+                    douController.text =formattedDate;
+                  });
+                }              }, onChanged: (value){
+              setState(() {
+                douController.text = value;
+              });
+            },
             ),
             //Station of Posting
             CustomTextFormField(
@@ -603,7 +752,7 @@ class _InfoFormState extends State<InfoForm> {
 
             appButton(
               onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
+           /*     SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('nameController', nameController.text);
                 await prefs.setString('dateController', dateController.text);
                 await prefs.setString('gender', selectedGender ?? '');
@@ -649,7 +798,7 @@ class _InfoFormState extends State<InfoForm> {
                     content: Text('Data saved in shared preferences!'),
                   ),
 
-                );
+                );*/
                 final user = UserInfo(
                   name: appStore.loginFullName,
                   date: dateController.text,
@@ -704,19 +853,6 @@ class _InfoFormState extends State<InfoForm> {
   // final _db = FirebaseFirestore.instance;
 
   Future<void> createUser(UserInfo user) async{
-   /* await _db.collection("User").doc("${appStore.loginEmail}").set(user.toJson()).whenComplete(
-          () => ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Data saved!'),
-              backgroundColor: appColorPrimary ,
-            ),
-          ),
-        ).catchError((onError){
-      SnackBar(
-        content: Text('Error $onError)'),
-        backgroundColor: appColorPrimary ,
-      );
-    });*/
     final docUser = FirebaseFirestore.instance.collection('users').doc("${appStore.loginEmail}");
 
      user.id = docUser.id;

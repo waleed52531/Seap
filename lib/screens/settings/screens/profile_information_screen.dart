@@ -67,6 +67,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                 child: CustomText(label: "Basic Information",fontweight: FontWeight.bold),
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
                 elevation: 5,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -138,6 +141,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                 child: CustomText(label: "Personal Data",fontweight: FontWeight.bold),
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
                 elevation: 5,
                 child:  Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -247,6 +253,9 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                 child: CustomText(label: "Professional Information",fontweight: FontWeight.bold),
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
                 elevation: 5,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
