@@ -60,8 +60,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(label: "Basic Information",fontweight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0,top: 20.0,bottom: 5.0),
+                child: CustomText(label: "Basic Information",fontweight: FontWeight.bold),
+              ),
               Card(
                 elevation: 5,
                 child: Padding(
@@ -129,7 +133,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                 ),
 
               ),
-              CustomText(label: "Personal Data",fontweight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0,top: 20.0,bottom: 5.0),
+                child: CustomText(label: "Personal Data",fontweight: FontWeight.bold),
+              ),
               Card(
                 elevation: 5,
                 child:  Padding(
@@ -235,7 +242,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                 ),
 
               ),
-              CustomText(label: "Professional Information",fontweight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0,top: 20.0,bottom: 5.0),
+                child: CustomText(label: "Professional Information",fontweight: FontWeight.bold),
+              ),
               Card(
                 elevation: 5,
                 child: Padding(
