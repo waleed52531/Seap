@@ -1,5 +1,5 @@
 /// App Name
-const APP_NAME = "Seap";
+const APP_NAME = "SAEP";
 
 /// App Icon src
 const APP_ICON = "assets/app_icon.png";

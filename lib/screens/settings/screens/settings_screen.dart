@@ -9,6 +9,7 @@ import 'package:socialv/main.dart';
 import 'package:socialv/network/rest_apis.dart';
 import 'package:socialv/screens/blockReport/blocked_accounts.dart';
 import 'package:socialv/screens/profile/screens/edit_profile_screen.dart';
+import 'package:socialv/screens/profile/screens/personal_detail_form.dart';
 import 'package:socialv/screens/settings/screens/change_password_screen.dart';
 import 'package:socialv/screens/settings/screens/coupon_list_screen.dart';
 import 'package:socialv/screens/settings/screens/edit_shop_details_screen.dart';
@@ -182,7 +183,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           trailing: Icon(Icons.arrow_forward_ios, color: appStore.isDarkMode ? bodyDark : bodyWhite, size: 16),
                           onTap: () {
                             if (!appStore.isLoading)
-                              EditProfileScreen().launch(context).then((value) {
+                              InfoForm().launch(context).then((value) {
                                 isUpdate = value;
                               });
                           },

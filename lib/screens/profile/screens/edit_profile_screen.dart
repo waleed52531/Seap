@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:socialv/components/file_picker_dialog_component.dart';
@@ -10,8 +11,11 @@ import 'package:socialv/models/members/profile_field_model.dart';
 import 'package:socialv/network/rest_apis.dart';
 import 'package:socialv/screens/profile/components/expansion_body.dart';
 import 'package:socialv/screens/profile/screens/personal_detail_form.dart';
+import 'package:socialv/screens/settings/screens/profile_information_screen.dart';
 import 'package:socialv/utils/app_constants.dart';
 import 'package:socialv/utils/cached_network_image.dart';
+
+import '../components/custom_text.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -36,6 +40,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   File? avatarImage;
   File? cover;
+
+  bool isUpdate = false;
 
   @override
   void initState() {
@@ -152,17 +158,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 finish(context, true);
               },
             ),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  if (!appStore.isLoading) update();
-                },
-                child: Text(
-                  language.update.capitalizeFirstLetter(),
-                  style: secondaryTextStyle(color: context.primaryColor),
-                ),
-              ).paddingSymmetric(vertical: 8, horizontal: 8),
-            ],
+            // actions: [
+            //   TextButton(
+            //     onPressed: () async {
+            //       if (!appStore.isLoading) update();
+            //     },
+            //     child: Text(
+            //       language.update.capitalizeFirstLetter(),
+            //       style: secondaryTextStyle(color: context.primaryColor),
+            //     ),
+            //   ).paddingSymmetric(vertical: 8, horizontal: 8),
+            // ],
           ),
           body: Stack(
             children: [
@@ -300,59 +306,55 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       height: 280,
                     ),
                     50.height,
-                    AppTextField(
-                      enabled: !appStore.isLoading,
-                      controller: nameCont,
-                      focus: name,
-                      keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.next,
-                      textFieldType: TextFieldType.NAME,
-                      textStyle: boldTextStyle(),
-                      decoration: inputDecoration(
-                        context,
-                        label: language.fullName,
-                        labelStyle: secondaryTextStyle(weight: FontWeight.w600),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,top: 20.0,bottom: 5.0),
+                      child: CustomText(label: "Basic Information",fontweight: FontWeight.bold),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
                       ),
-                    ).paddingSymmetric(horizontal: 16),
-                    if (fieldList.isNotEmpty)
-                      Text(
-                        '${language.profile} ${language.settings}',
-                        style: boldTextStyle(color: context.primaryColor),
-                      ).paddingAll(16),
-                    if (fieldList.isNotEmpty)
-                      Theme(
-                        data: Theme.of(context).copyWith(useMaterial3: false),
-                        child: ExpansionPanelList.radio(
-                          elevation: 0,
-                          children: fieldList.map<ExpansionPanelRadio>(
-                            (e) {
-                              return ExpansionPanelRadio(
-                                value: e.groupId.validate(),
-                                canTapOnHeader: true,
-                                backgroundColor: context.cardColor,
-                                headerBuilder: (BuildContext context, bool isExpanded) {
-                                  if (isExpanded) {
-                                    group = e;
-                                  }
-                                  return ListTile(
-                                    title: Text(
-                                      e.groupName.validate(),
-                                      style: primaryTextStyle(color: isExpanded ? context.primaryColor : context.iconColor),
-                                    ),
-                                  );
-                                },
-                                body: ExpansionBody(
-                                  group: e,
-                                  callback: () {
-                                    appStore.setLoading(true);
-                                    getFiledList();
-                                  },
-                                ),
-                              );
-                            },
-                          ).toList(),
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(label: 'Username'),
+                                SizedBox(width: 100),
+                                CustomText(label:appStore.loginName,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(label: 'Full Name'),
+                                CustomText(label: appStore.loginFullName, overflow: TextOverflow.ellipsis,),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(label: 'Email'),
+                                CustomText(label: appStore.loginEmail, overflow: TextOverflow.ellipsis,),
+                              ],
+                            ),
+
+                            SizedBox(height: 10),
+
+                          ],
                         ),
                       ),
+
+                    ),
                     60.height,
                   ],
                 ),
@@ -360,12 +362,63 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               LoadingWidget().visible(appStore.isLoading).center(),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: SpeedDial( //Speed dial menu
+            icon: Icons.menu, //icon on Floating action button
+            activeIcon: Icons.close, //icon when menu is expanded on button
+            backgroundColor: context.primaryColor, //background color of button
+            foregroundColor: Colors.white, //font color, icon color in button
+            activeBackgroundColor: Colors.blueGrey, //background color when menu is expanded
+            activeForegroundColor: Colors.white, //button size
+            visible: true,
+            closeManually: false,
+            curve: Curves.bounceIn,
+            overlayColor: Colors.black,
+            overlayOpacity: 0.5,
+            onOpen: () => print('OPENING DIAL'), // action when menu opens
+            onClose: () => print('DIAL CLOSED'), //action when menu closes
+
+            elevation: 8.0, //shadow elevation of button
+            shape: CircleBorder(), //shape of button
+
+            children: [
+              SpeedDialChild( //speed dial child
+                child: Icon(Icons.edit),
+                backgroundColor: context.primaryColor,
+                foregroundColor: Colors.white,
+                label: 'Edit Information',
+                labelStyle: TextStyle(fontSize: 18.0),
+                onTap: () {
+                  if (!appStore.isLoading)
+                    InfoForm().launch(context).then((value) {
+                      isUpdate = value;
+                    });
+                }
+
+              ),
+              SpeedDialChild(
+                child: Image.asset(ic_profile, height: 18, width: 18, color: context.primaryColor, fit: BoxFit.cover),
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.teal,
+                label: 'Personal Information',
+                labelStyle: TextStyle(fontSize: 18.0),
+                onTap: () {
+                  if (!appStore.isLoading)
+                    ProfileDetailScreen().launch(context).then((value) {
+                      isUpdate = value;
+                    });
+                }
+              ),
+
+              //add more menu item childs here
+            ],
+          ),
+
+          /*floatingActionButton: FloatingActionButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => InfoForm(),));
             },
-            child: Text('Edit'),
-          ),
+            child: Text('More Information'),
+          ),*/
 
         ),
       ),

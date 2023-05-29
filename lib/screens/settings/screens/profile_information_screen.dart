@@ -92,7 +92,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Gender'),
-                          CustomText(label: user.gender),
+                          CustomText(label: user.gender, overflow: TextOverflow.ellipsis,),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -113,7 +113,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Location'),
-                          CustomText(label: user.location),
+                          CustomText(label: user.location, overflow: TextOverflow.ellipsis,),
                         ],
                       ),
                       SizedBox(height: 10),
