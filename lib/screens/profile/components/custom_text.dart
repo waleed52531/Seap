@@ -7,6 +7,7 @@ class CustomText extends StatelessWidget {
     Key? key,
     required this.label,
     this.fontweight,
+    this.fontSize,
     this.softwrap,
     this.maxLines,
     this.overflow,
@@ -18,6 +19,7 @@ class CustomText extends StatelessWidget {
   var softwrap;
   var maxLines;
   var overflow;
+  var fontSize;
 
 
   @override
@@ -27,11 +29,13 @@ class CustomText extends StatelessWidget {
         maxHeight: 100, // Limit the height of the widget
       ),
       child: Text(
+        textAlign: TextAlign.right,
         label,
         softWrap: softwrap,
         maxLines: maxLines,
         overflow: overflow,
-        style: boldTextStyle(color: appColorPrimary),
+        style: boldTextStyle(color: appColorPrimary,),
+
       ),
     );
   }

@@ -27,29 +27,63 @@ class _LinkPageState extends State<LinkPage> {
           },
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          TextButton(
-              onPressed: (){
-                if (!appStore.isLoading) openWebPage(context, url: GOOGLE_URL);
-              },
-              child: CustomText(label: "https://www.google.com/",fontweight: FontWeight.bold),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
+                child: CustomText(
+                    label: "Useful Links", fontweight: FontWeight.bold, ),
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          if (!appStore.isLoading)
+                            openWebPage(context, url: GOOGLE_URL);
+                        },
+                        child: CustomText(
+                            label: "Google", fontweight: FontWeight.bold),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          if (!appStore.isLoading)
+                            openWebPage(context, url: YOUTUBE_URL);
+                        },
+                        child: CustomText(
+                            label: "Youtube", fontweight: FontWeight.bold),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          if (!appStore.isLoading)
+                            openWebPage(context, url: SUPPORT_URL);
+                        },
+                        child: CustomText(
+                            label: "Help & Support",
+                            fontweight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-          TextButton(
-              onPressed: (){
-                if (!appStore.isLoading) openWebPage(context, url: YOUTUBE_URL);
-              },
-              child: CustomText(label: "https://www.youtube.com/",fontweight: FontWeight.bold),
-          ),
-          TextButton(
-              onPressed: (){
-                if (!appStore.isLoading) openWebPage(context, url: SUPPORT_URL);
-              },
-              child: CustomText(label: "https://iqonic.desky.support",fontweight: FontWeight.bold),
-          ),
-        ],
+        ),
       ),
     );
   }

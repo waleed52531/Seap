@@ -230,7 +230,7 @@ class _GroupListScreenState extends State<GroupListScreen> {
                           child: Row(
                             children: [
                               cachedImage(
-                                groupList[index].avatarUrls!.full.validate(),
+                                groupList[index].avatarUrls?.full.validate() ?? "${groupList[index].avatarUrls}" ,
                                 height: 56,
                                 width: 56,
                                 fit: BoxFit.cover,

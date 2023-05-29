@@ -324,9 +324,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomText(label: 'Username'),
-                                SizedBox(width: 100),
-                                CustomText(label:appStore.loginName,
-                                    overflow: TextOverflow.ellipsis),
+                                Spacer(),
+                                Expanded(
+                                  child: CustomText(label:appStore.loginName,
+                                      overflow: TextOverflow.ellipsis),
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -335,7 +337,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomText(label: 'Full Name'),
-                                CustomText(label: appStore.loginFullName, overflow: TextOverflow.ellipsis,),
+                                Spacer(),
+                                Expanded(child: CustomText(label: appStore.loginFullName, overflow: TextOverflow.ellipsis,)),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -344,7 +347,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomText(label: 'Email'),
-                                CustomText(label: appStore.loginEmail, overflow: TextOverflow.ellipsis,),
+                                Spacer(),
+                                Expanded(child: CustomText(label: appStore.loginEmail, overflow: TextOverflow.ellipsis,)),
                               ],
                             ),
 

@@ -81,8 +81,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         children: [
                           CustomText(label: 'Name'),
                           SizedBox(width: 100),
-                          CustomText(label:user.name,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.name,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       //TODO check karny k liay comment kia ha
@@ -92,7 +94,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Gender'),
-                          CustomText(label: user.gender, overflow: TextOverflow.ellipsis,),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.gender,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -102,8 +108,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         children: [
                           CustomText(label: 'Birthday'),
                           SizedBox(width: 100),
-                          CustomText(label: user.date,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.date,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       //TODO check karny k liay comment kia ha
@@ -113,7 +121,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Location'),
-                          CustomText(label: user.location, overflow: TextOverflow.ellipsis,),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.location,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -151,12 +163,13 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Phone'),
-                          SizedBox(width: 100),
-                          CustomText(label: user.phone,
-                              overflow: TextOverflow.ellipsis),
+                          Spacer(),
+                          Expanded(
+                            child: CustomText(label: user.phone,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -166,8 +179,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         children: [
                           CustomText(label: 'Email'),
                           SizedBox(width: 100),
-                          CustomText(label: user.email,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.email,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -198,8 +213,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Emergency Contact'),
-                          CustomText(label: user.emergency_contact,
-                              overflow: TextOverflow.ellipsis),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.emergency_contact,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -208,8 +226,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'CNIC'),
-                          CustomText(label: user.cnic,
-                              overflow: TextOverflow.ellipsis),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.cnic,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -218,8 +239,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Academic Qualification'),
-                          CustomText(label: user.academic_qualification,
-                              overflow: TextOverflow.ellipsis),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.academic_qualification,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -228,8 +252,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Blood Group'),
-                          CustomText(label: user.blood_group,
-                              overflow: TextOverflow.ellipsis),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.blood_group,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -238,8 +265,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Next of Kin'),
-                          CustomText(label: user.nik,
-                              overflow: TextOverflow.ellipsis),
+                          SizedBox(width: 100),
+                          Expanded(
+                            child: CustomText(label: user.nik,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -267,8 +297,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         children: [
                           CustomText(label: 'Staff No'),
                           SizedBox(width: 100),
-                          CustomText(label: user.staffno,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.staffno,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -278,8 +310,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         children: [
                           CustomText(label: 'Grading'),
                           SizedBox(width: 100),
-                          CustomText(label: user.grading,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.grading,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -299,8 +333,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Apes'),
-                          CustomText(label: user.apes,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.apes,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -309,8 +345,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Designation'),
-                          CustomText(label: user.designation,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.designation,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -319,8 +357,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Date of Joining'),
-                          CustomText(label: user.joining_date,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.joining_date,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -329,8 +369,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Date of Retirement'),
-                          CustomText(label: user.retierment_date,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.retierment_date,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -339,8 +381,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Date of Utilization'),
-                          CustomText(label: user.utilization_date,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.utilization_date,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -349,8 +393,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Station of posting'),
-                          CustomText(label: user.posting_station,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.posting_station,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -359,8 +405,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Professional Qualification'),
-                          CustomText(label: user.qualification,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.qualification,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -369,8 +417,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Company'),
-                          CustomText(label: user.company,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.company,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -379,8 +429,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Department'),
-                          CustomText(label: user.department,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.department,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -389,8 +441,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'Division'),
-                          CustomText(label: user.division,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.division,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -399,8 +453,10 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(label: 'section'),
-                          CustomText(label: user.section,
-                              overflow: TextOverflow.ellipsis),
+                          Expanded(
+                            child: CustomText(label: user.section,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
